@@ -1,0 +1,6 @@
+Bob 45
+Ip 55
+Bo 60
+Jens 12
+Carsten 58
+Mikkel 27 
