@@ -43,14 +43,16 @@ turn = 1
 while turn <= 1000 :
     #print("turn: " + str(turn))
     option = "mine"
-    if turn== 1000:
+    if turn >= 999:
         option = "mine"
     elif sleepiness >= 90:
         option = "sleep"
-    elif thirst >= 95:
-        option = "drink"
     elif hunger >=  95:
         option = "eat"
+    elif gold >= 1 and whisky < 1:
+        option = "buy_whisky"
+    elif thirst >= 95:
+        option = "drink"
     else:
         option = "mine"
 
@@ -78,10 +80,7 @@ while turn <= 1000 :
         sleepiness+=5;  thirst-=5;  hunger-=20; gold-=2
         print("turn " + str(turn) +": ate")
     elif option == "buy_whisky":
-        if whisky == 10:
-            sleepiness+=5;  thirst+=1;  hunger+=1;  whisky+=0; gold-=1
-        else:
-            sleepiness+=5;  thirst+=1;  hunger+=1;  whisky+=1; gold-=1
+        sleepiness+=5;  thirst+=1;  hunger+=1;  whisky+=1; gold-=1
         print("turn " + str(turn) +": bought whisky")
     elif option == "drink":
         sleepiness+=5;  thirst-=15; hunger-=1;  whisky-=1
