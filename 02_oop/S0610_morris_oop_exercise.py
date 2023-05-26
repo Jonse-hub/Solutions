@@ -20,7 +20,7 @@ Fortsæt derefter med den næste fil."""
 
 
 
-class Miner():
+class Miner:
     def __init__(self, sleepiness, thirst, hunger, whisky, gold, done = "mine"):
         self.sleepiness = sleepiness
         self.thirst = thirst
@@ -61,7 +61,7 @@ class Miner():
     def _drink_(self):
         self.sleepiness+=5;  self.thirst-=15; self.hunger-=1;  self.whisky-=1
 
-class Morris_The_Miner_Game():
+class Morris_The_Miner_Game:
     
     def __init__(self, turn=1):
         self.turn = turn
@@ -141,6 +141,7 @@ drink:      sleepiness+=5,  thirst-=15, hunger-=1,  whisky-=1, gold+=0""")
             self.turn += 1
         print("Game is over!")
 
+    @staticmethod
     def _Dead():
         print("Morris is dead!")
         

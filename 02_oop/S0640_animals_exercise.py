@@ -44,3 +44,50 @@ Når dit program er færdigt, skal du skubbe det til dit github-repository.
 Send derefter denne Teams-meddelelse til din lærer: <filename> færdig
 Fortsæt derefter med den næste fil."""
 
+import random
+
+rndnum = random.randint(0, 1)
+
+class Animal:
+    def __init__(self, name, sound, height, weight, legs, female):
+        self.name = name
+        self.sound = sound
+        self.height = height
+        self.weight = weight
+        self.legs = legs
+        self.female = female
+
+    def __repr__(self):
+        return f"Animal: {self.name=} {self.sound=} {self.height=} {self.weight=} {self.legs=} {self.female=}" 
+    def make_noise(self):
+        print(self.sound)
+class Dog(Animal):
+    def wag_tail(self):
+        print(f"Hunden {self.name} vifter med sin {str(self.height/4)} lange hale")
+
+    def mate(self, mother, father):
+        if mother.female == True and father.female == False:
+            rndnum = random.randint(0, 1)
+            if rndnum == 0:
+                female = False
+            elif rndnum == 1:
+                female = True
+            child = Dog(mother.name+" & "+father.name+" child", father.sound, (father.height+mother.height)/2, (mother.weight+father.weight)/2, father.legs, female)
+            print(child)
+
+
+
+    
+animal1 = Animal("George", "sound", 15, 16, 4, True)
+
+print(animal1)
+
+hund1 = Dog("Bobby", "wuff", 50, 44, 4, False)
+hund2 = Dog("Sanne", "wuff", 25, 20, 4, True)
+print(hund1)
+hund1.wag_tail()
+
+hund1.mate(hund2, hund1)
+
+
+
