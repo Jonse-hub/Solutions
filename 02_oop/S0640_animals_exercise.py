@@ -65,13 +65,11 @@ class Dog(Animal):
     def wag_tail(self):
         print(f"Hunden {self.name} vifter med sin {str(self.height/4)} lange hale")
 
-    def mate(self, mother, father):
-        if mother.female == True and father.female == False:
+    @staticmethod
+    def mate(mother, father):
+        if mother.female and not father.female:
             rndnum = random.randint(0, 1)
-            if rndnum == 0:
-                female = False
-            elif rndnum == 1:
-                female = True
+            female = rndnum == 1
             child = Dog(mother.name+" & "+father.name+" child", father.sound, (father.height+mother.height)/2, (mother.weight+father.weight)/2, father.legs, female)
             print(child)
 
