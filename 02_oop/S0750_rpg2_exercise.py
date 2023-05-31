@@ -31,6 +31,7 @@ Fortsæt derefter med den næste fil."""
 from colorama import Fore
 import random
 
+
 class Character:
     def __init__(self, name, isdead, max_health, _current_health, power):
         self.name = name
@@ -38,88 +39,101 @@ class Character:
         self.max_health = max_health
         self._current_health = _current_health
         self.power = power
+
     def __repr__(self):
         return f"{self.name}: health = {self.max_health}/{self._current_health}, attackpower = {self.power}"
-    def hit(self, Character):
-        if self.isdead == True:
-            print(Fore.BLUE+ "Can't attack. " +self.name+ " is Dead.")
-        elif self.isdead == False:
-            Character._current_health -= self.power
-            print(Fore.BLUE+ f"hit {Character.name}: {self.power}")
-            if Character._current_health <= 0:
-                Character.isdead = True
-                print(f"{Character.name} died.")
 
+    def hit(self, character):
+        if self.isdead:
+            print(Fore.BLUE + "Can't attack. " + self.name + " is Dead.")
+        elif not self.isdead:
+            character._current_health -= self.power
+            print(Fore.BLUE + f"hit {character.name}: {self.power}")
+            if character._current_health <= 0:
+                character.isdead = True
+                print(f"{character.name} died.")
 
-    def get_hit(self, Character):
-        self._current_health -= Character.power
-        print(Fore.RED+ f"{Character.name} hit {self.name} by : {Character.power}")
+    def get_hit(self, character):
+        self._current_health -= character.power
+        print(
+            Fore.RED + f"{character.name} hit {self.name} by : {character.power}")
         if self._current_health <= 0:
             self.isdead = True
             print(f"{self.name} died.")
 
+
 class Healer(Character):
-    
+
     def __init__(self, name, isdead, max_health, _current_health, power):
         super().__init__(name, isdead, max_health, _current_health, power)
+
     def __repr__(self):
         return f"{self.name}: health = {self.max_health}/{self._current_health}, Healpower = {self.power}"
-    def heal(self, Character):
-        if self.isdead == True:
-            print(Fore.BLUE+ "Can't heal. Healer is Dead.")
+
+    def heal(self, character):
+        if self.isdead:
+            print(Fore.BLUE + "Can't heal. Healer is Dead.")
         else:
-            if Character._current_health <= 0:
-                Character.isdead = False
-                print(Fore.YELLOW+"Revived " +Character.name+"!")
-            Character._current_health += self.power
+            if character._current_health <= 0:
+                character.isdead = False
+                print(Fore.YELLOW+"Revived " + character.name+"!")
+            character._current_health += self.power
 
             # can't go above max health
-            if Character._current_health > Character.max_health:
-                Character._current_health = Character.max_health
-        
-        print(Fore.GREEN+ f"Healed {Character.name}: {self.power}")
+            if character._current_health > character.max_health:
+                character._current_health = character.max_health
+
+        print(Fore.GREEN + f"Healed {character.name}: {self.power}")
+
 
 class Hunter(Character):
     def __init__(self, name, isdead, max_health, _current_health, power):
         super().__init__(name, isdead, max_health, _current_health, power)
         self.power = power
+
     def __repr__(self):
         return f"{self.name}: health = {self.max_health}/{self._current_health}, trap = {self.power}"
-    def get_hit(self, Character):
+
+    def get_hit(self, character):
         if self.power == True:
-            Character._current_health -= Character.power
-            print(Fore.RED+ f"{Character.name} walked into {self.name} trap! And was hit by : {Character.power}")
+            character._current_health -= character.power
+            print(
+                Fore.RED + f"{character.name} walked into {self.name} trap! And was hit by : {character.power}")
             self.power = False
 
         elif self.power == False:
-            self._current_health -= Character.power
-            print(Fore.RED+ f"{Character.name} hit {self.name} by : {Character.power}")
+            self._current_health -= character.power
+            print(
+                Fore.RED + f"{character.name} hit {self.name} by : {character.power}")
             if self._current_health <= 0:
                 self.isdead = True
                 print(f"{self.name} died.")
-        
+
     def trap(self):
         self.power = True
-        print(Fore.GREEN+ f"{self.name} activated trap")
+        print(Fore.GREEN + f"{self.name} activated trap")
+
 
 class Warlock(Character):
     def __init__(self, name, isdead, max_health, _current_health, power):
         super().__init__(name, isdead, max_health, _current_health, power)
+
     def __repr__(self):
         return f"{self.name}: health = {self.max_health}/{self._current_health}, darkpower = {self.power}"
-    def darkpower(self, Character):
-        if self.isdead == True:
-            print(Fore.BLUE+ "Can't attack. " +self.name+ " is Dead.")
-        elif self.isdead == False:
-            self._current_health -= self.power/2
-            Character._current_health -= self.power
-            print(Fore.BLUE+ f"hit {Character.name}: {self.power}, and himself: {self.power/2}")
-            if Character._current_health <= 0:
-                Character.isdead = True
-                print(f"{Character.name} died.")
 
-        
-    
+    def darkpower(self, character):
+        if self.isdead:
+            print(Fore.BLUE + "Can't attack. " + self.name + " is Dead.")
+        elif not self.isdead:
+            self._current_health -= self.power/2
+            character._current_health -= self.power
+            print(
+                Fore.BLUE + f"hit {character.name}: {self.power}, and himself: {self.power/2}")
+            if character._current_health <= 0:
+                character.isdead = True
+                print(f"{character.name} died.")
+
+
 Good_characters = []
 you = Character("you", False, 100, 100, 25)
 Good_characters.append(you)
@@ -137,9 +151,8 @@ enemy2 = Character("enemy2", False,  200, 200, 30)
 enemy_characters.append(enemy2)
 
 
-
 print("Welcome to RPG Game.")
-## def choseenemyattack(): # how to?
+# def choseenemyattack(): # how to?
 allcharacterdead = False
 allenemydead = False
 while not allcharacterdead:
@@ -157,17 +170,17 @@ while not allcharacterdead:
         print(Fore.RED + str(Character))
         if Character.isdead:
             deadcharacters += 1
-    
-    #print("enemy dead: "+str(deadcharacters))
-    #print("enemys: "+str(len(enemy_characters)))
+
+    # print("enemy dead: "+str(deadcharacters))
+    # print("enemys: "+str(len(enemy_characters)))
     if deadcharacters == len(enemy_characters):
         break
-    
 
     CharacterWrong = True
     while CharacterWrong:
-        user_input = input(Fore.WHITE+"1. for Hit Enemy, 2. for Heal Character, 3. for hunter trap, 4. for Warlock darkpower: ")
-    
+        user_input = input(
+            Fore.WHITE+"1. for Hit Enemy, 2. for Heal Character, 3. for hunter trap, 4. for Warlock darkpower: ")
+
         CharacterWrong = False
         if user_input == "1":
             string = ""
@@ -181,8 +194,10 @@ while not allcharacterdead:
 
                 try:
                     user_input = int(input("who to attack?: "))
-                except:
+                except ValueError:
                     print("give falid input")
+                # except: 
+                #     print("other infalid input")
                 else:
                     if user_input < enemy_characters.__len__():
                         loop = False
@@ -204,8 +219,10 @@ while not allcharacterdead:
 
                 try:
                     user_input = int(input("who to heal?: "))
-                except:
-                    print("give falid input")
+                except ValueError:
+                    print("ValueError")
+                # except:
+                #     print("give falid input")
                 else:
                     if user_input < Good_characters.__len__():
                         loop = False
@@ -232,8 +249,10 @@ while not allcharacterdead:
 
                 try:
                     user_input = int(input("who to attack?: "))
-                except:
-                    print("give falid input")
+                except ValueError():
+                    print("ValueError")
+                # except:
+                #     print("other error")
                 else:
                     if user_input < enemy_characters.__len__():
                         loop = False
@@ -248,7 +267,7 @@ while not allcharacterdead:
         else:
             CharacterWrong = True
             print("try again")
-        
+
     """
     if Healer.isdead == True:
         you.get_hit(enemy1)
@@ -268,19 +287,21 @@ while not allcharacterdead:
         if Character.isdead:
             continue
         else:
-            rndnum = random.randint(0, len(Good_characters)-1)
+            
+            loop = True
+            while loop:
+                rndnum = random.randint(0, len(Good_characters)-1)
+                if not Good_characters[rndnum].isdead:
+                    loop = False
             """ 
             if deadcharacters.__contains__(rndnum):
                 continue
             else: """
             Good_characters[rndnum].get_hit(Character)
-    
+
 if allcharacterdead == False:
-    print(Fore.YELLOW+ "You WON!")
+    print(Fore.YELLOW + "You WON!")
 elif allcharacterdead == True:
-    print(Fore.BLUE+ "You LOST!")
-else: 
+    print(Fore.BLUE + "You LOST!")
+else:
     print("TIE")
-    
-
-
