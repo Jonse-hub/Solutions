@@ -24,7 +24,7 @@ og sammenlign det med lærerens løsning i S0730_rpg1_solution.py
 
 Send derefter denne Teams-besked til din lærer: <filename> færdig
 Fortsæt derefter med den næste fil."""
-from colorama import Fore
+from colorama import Fore, Back
 import random
 
 class Character:
@@ -85,7 +85,7 @@ enemy = Character("enemy", False,  1000, 1000, 15)
 
 bothdead = False
 
-print("Welcome to RPG Game.")
+print(Fore.RED + Back.WHITE+"Welcome to RPG Game." +Back.BLACK)
 print(Fore.GREEN+ str(you))
 print(Fore.GREEN+ str(Healer))
 print(Fore.RED+ str(enemy))

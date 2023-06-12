@@ -46,7 +46,7 @@ Fortsæt derefter med den næste fil."""
 
 import random
 
-rndnum = random.randint(0, 1)
+rndnum = random.randrange(2) # 0-1
 
 class Animal:
     def __init__(self, name, sound, height, weight, legs, female):
@@ -68,7 +68,7 @@ class Dog(Animal):
     @staticmethod
     def mate(mother, father):
         if mother.female and not father.female:
-            rndnum = random.randint(0, 1)
+            rndnum = random.randrange(2)
             female = rndnum == 1
             child = Dog(mother.name+" & "+father.name+" child", father.sound, (father.height+mother.height)/2, (mother.weight+father.weight)/2, father.legs, female)
             print(child)
@@ -85,7 +85,12 @@ hund2 = Dog("Sanne", "wuff", 25, 20, 4, True)
 print(hund1)
 hund1.wag_tail()
 
+
+
+
 hund1.mate(hund2, hund1)
+
+print(rndnum)
 
 
 

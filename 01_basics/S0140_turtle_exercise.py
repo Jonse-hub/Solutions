@@ -48,13 +48,61 @@ Fortsæt derefter med den næste fil.
 """
 
 import turtle  # this imports a library called "turtle". A library is (someone else's) python code, that you can use in your own program.
-
+tom = turtle.Turtle()  # create an object named tom of type Turtle
+tom.speed(1)
 
 def visible(turtle_name):  # returns true if both the x- and y-value of the turtle's position are between -480 and 480
     # you will need this: x-value: turtle_name.position()[0]
     # and this:           y-value: turtle_name.position()[1]
-    return 0
+    if turtle_name.position()[0] > 480:
+        turtle_name.backward(turtle_name.position()[0]-480)
+    elif turtle_name.position()[0] < -480:
+        turtle_name.backward(turtle_name.position()[0]+480)
+    if turtle_name.position()[1] > 480:
+        turtle_name.backward(turtle_name.position()[1]-480)
+    elif turtle_name.position()[1] < -480:
+        turtle_name.backward(turtle_name.position()[1]+480)
+    print(f'Tom is now at {turtle_name.position()}, x-value: {turtle_name.position()[0]=:.2f}, y-value: {turtle_name.position()[1]=:.2f}')
+    #return 0
 
+def square(length):
+    
+    print(type(tom))
+    for x in range(4):
+        tom.forward(length)
+        print(f'Tom is now at {tom.position()}, x-value: {tom.position()[0]=:.2f}, y-value: {tom.position()[1]=:.2f}')
+        visible(tom)
+
+        tom.left(90)
+    tom.home()
+    print(f'Tom is now at {tom.position()}, x-value: {tom.position()[0]=:.2f}, y-value: {tom.position()[1]=:.2f}')
+
+def starpolygon(length):
+    for x in range(8):
+        tom.forward(length*2)
+        print(f'Tom is now at {tom.position()}, x-value: {tom.position()[0]=:.2f}, y-value: {tom.position()[1]=:.2f}')
+        visible(tom)
+
+        #tom.left(180-60) # 3 gange
+        #tom.left(180-50) # 6 gange
+        tom.left(180-45) # 8 gange
+        #tom.left(180-30) # 12 gange
+    
+    
+def many_squares(length, repetitions):
+    for x in range(repetitions):
+        square(length)
+def PythagoreanFirkant():
+    firkant = 20
+    for x in range(25):
+        tom.forward(firkant)
+        firkant = firkant+20
+        print(f'Tom is now at {tom.position()}, x-value: {tom.position()[0]=:.2f}, y-value: {tom.position()[1]=:.2f}')
+        visible(tom)
+
+        tom.left(90)
+    
+    
 
 def demo():  # demonstration of basic turtle commands
     tom = turtle.Turtle()  # create an object named tom of type Turtle
@@ -76,4 +124,11 @@ def demo():  # demonstration of basic turtle commands
     turtle.done()  # keeps the turtle window open after the program is done
 
 
-demo()
+#demo()
+#square(490)
+
+#many_squares(40, 4)
+#PythagoreanFirkant()
+starpolygon(60)
+turtle.done() 
+
