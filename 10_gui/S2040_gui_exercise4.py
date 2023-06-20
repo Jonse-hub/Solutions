@@ -27,9 +27,8 @@ def create_entry():
     print("Create was pressed")
     # entry_1.delete(0, tk.END)
 
-    
-
-    test_data_list.append((int(Id_entry_1.get()), int(weight_entry_1.get()), Destination_entry_1.get()))    
+    test_data_list.append((int(Id_entry_1.get()), int(
+        weight_entry_1.get()), Destination_entry_1.get()))
 
     read_table(tree_1)
 
@@ -37,24 +36,23 @@ def create_entry():
     weight_entry_1.delete(0, tk.END)
     Destination_entry_1.delete(0, tk.END)
 
-    
-
 
 def update_entry():
     print("Update was pressed")
 
-    index_selected = tree_1.index(tree_1.focus()) 
+    index_selected = tree_1.index(tree_1.focus())
 
     test_data_list.pop(int(index_selected))
 
-    test_data_list.insert(int(index_selected), (int(Id_entry_1.get()), int(weight_entry_1.get()), Destination_entry_1.get()))
+    test_data_list.insert(int(index_selected), (int(Id_entry_1.get()), int(
+        weight_entry_1.get()), Destination_entry_1.get()))
 
-    #tree_1.update(index_selected, (int(Id_entry_1.get()), int(weight_entry_1.get()), Destination_entry_1.get()))
-    
-    #tree_1.item(index_selected, option=)
-    
+    # tree_1.update(index_selected, (int(Id_entry_1.get()), int(weight_entry_1.get()), Destination_entry_1.get()))
+
+    # tree_1.item(index_selected, option=)
+
     # entry_1.delete(0, tk.END)
-    #tree_1.update()
+    # tree_1.update()
     read_table(tree_1)
 
 
@@ -65,6 +63,7 @@ def empty_entry():
     index_selected = tree_1.focus()  # Index of selected tuple
     test_data_list.pop(int(tree_1.index(index_selected)))
     tree_1.delete(index_selected)
+
 
 def empty_entries():
     print("Clear Entry Boxes was pressed")
@@ -77,10 +76,8 @@ def empty_entries():
 def read_table(tree):  # fill tree with test data
     # Use counter to keep track of odd and even rows, because these will be colored differently. (2)
 
-    
     tree.delete(*tree.get_children())
-    
-    
+
     count = 0
     for record in test_data_list:
         if count % 2 == 0:  # even
