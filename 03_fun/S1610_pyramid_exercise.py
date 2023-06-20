@@ -13,11 +13,10 @@ Funktionen udskriver tallene i hver række og også deres sum.
 I hovedprogrammet kalder du funktionen med fx 7 som argument.
 
 Tilføj en mere generel funktion pyramid2.
-Denne funktion har som andet parameter en liste med tallene i
-pyramidens øverste række.
+Denne funktion har som andet parameter "firstline" en liste med pyramidens øverste rækkens tallene.
 
-I hovedprogrammet kalder du pyramid2 med 1, 2, 3, ..., 10 som det første argument
-og en liste med tal efter eget valg som det andet argument.
+I hovedprogrammet kalder du pyramid2 med fx 10 som det første argument
+og en liste med tal efter eget valg som andet argument.
 Afprøv forskellige lister som andet argument.
 
 Hvis du ikke aner, hvordan du skal begynde, kan du åbne S1620_pyramid_help.py og starte derfra
@@ -54,14 +53,40 @@ def pyramid(length):
         print(string + str(rows))
 
 
-def pyramid2(length, numbers):  # numbers, which it starts with.
-    num = 1
+def pyramid2(length, rows):  # numbers, which it starts with.
+    """ num = 1
     while num <= length:
         print(numbers)
         num += 1
+    """
+    spacing = 1
+    string = "   "*(length-spacing)
+    #rows = [1, 1]
+    print(string + str(rows))
+    if length >= 2:
+        rows.insert(1, rows[0]+1)
+        spacing += 1
+        string = "   "*(length-spacing)
+        print(string + str(rows))
+
+    num = 3
+    while num <= length:
+        rows.insert(1, num)
+        rows.insert(-1, num)
+
+        if num % 5 == 0:
+            middle = len(rows)/2+1
+            rows.insert(int(middle)-1, num)
+            rows.insert(int(middle)+1, num)
+            spacing += 1
+        num += 1
+        spacing += 1
+        string = "   "*(length-spacing)
+        print(string + str(rows))
+    
 
 
 pyramid(10)
 
-pyramid2(7, [1,2, 0, 2])
+pyramid2(7, [2, 2])
 

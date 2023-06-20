@@ -96,7 +96,14 @@ class PlayerName1(turtle.Turtle):
 
         degree = 3  # When the turtle rotates the same amount each turn,  it will just run in a circle. Make this function smarter!
         
-        print (positions[2])
+        # print (positions[2])
+
+        #print(distance(positions[0], positions[1]))
+
+        #print(direction(positions[0], positions[1]))
+
+        degree = direction(positions[1], positions[2]) 
+        
 
         self.orientation += degree
         self.orientation %= 360
