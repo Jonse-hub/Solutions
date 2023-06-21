@@ -27,11 +27,11 @@ frame_1.grid(row=0, column=0, padx=padx, pady=pady, sticky=tk.N)
 # label_1.grid(row=0, column=1, padx=padx, pady=pady)
 
 entry_1 = tk.Entry(frame_1, width=24, justify="right")
-entry_1.grid(row=2, column=1, padx=padx, pady=pady)
+entry_1.grid(row=0, column=0, padx=padx, pady=pady)
 entry_1.insert(0, "This is an entry. Edit me!")
 
 button_1 = tk.Button(frame_1, text="Create")
-button_1.grid(row=3, column=1, padx=padx, pady=pady)
+button_1.grid(row=1, column=0, padx=padx, pady=pady)
 
 
 if __name__ == "__main__":
