@@ -61,8 +61,9 @@ def empty_entry():
     # entry_1.delete(0, tk.END)
 
     index_selected = tree_1.focus()  # Index of selected tuple
-    test_data_list.pop(int(tree_1.index(index_selected)))
-    tree_1.delete(index_selected)
+    if index_selected != "":
+        test_data_list.pop(tree_1.index(index_selected))
+        tree_1.delete(index_selected)
 
 
 def empty_entries():
